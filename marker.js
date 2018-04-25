@@ -1,7 +1,7 @@
 
 let myMap = L.map('mapdiv'); //http://leafletjs.com/reference-1.3.0.html#map-l-map
 //let myLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'); //erstellt neue Variable myLayer, aus Leafleat Bibliothek Layer; z=zoomlevel 
-
+let markerGroup=L.featureGroup();
 let myLayers = {
     
     osm : L.tileLayer( //http://leafletjs.com/reference-0.7.7.html#tilelayer
@@ -47,6 +47,7 @@ let myLayers = {
 
 
 myMap.addLayer(myLayers.geolandbasemap); //http://leafletjs.com/reference-0.7.7.html#map-addlayer
+
 myMap.setView([47.267,11.383],11);//http://leafletjs.com/reference-0.7.7.html#map-setview
 
 let myMapControl = L.control.layers({   //http://leafletjs.com/reference-0.7.7.html#control-layers
@@ -57,6 +58,7 @@ let myMapControl = L.control.layers({   //http://leafletjs.com/reference-0.7.7.h
     "basemap.at Orthofoto" : myLayers.bmaporthofoto30cm,
 },{
     "basemap.at Overlay" : myLayers.bmapoverlay,
+    'Marker': markerGroup,
 },{
     collapsed: false //http://leafletjs.com/reference-0.7.7.html#control-layers-collapsed
     
@@ -73,13 +75,18 @@ L.control.scale( { //http://leafletjs.com/reference-0.7.7.html#control-scale
 const uni=[47.264,11.385];
 const usi=[47.257, 11.356];
 const technik=[47.263, 11.343];
+myMap.addLayer(markerGroup);
+
 const markerOptions={
     title: 'Uni Innsbruck',
-    opacity: 0.4,
+    opacity: 0.4, //Transparenz d. Markers
     draggable: true
 }
-L.marker(uni, markerOptions).addTo(myMap);  //Marker mit folgendern Koordinaten hinzugefügt 
-L.marker(usi, markerOptions).addTo(myMap)
-L.marker(technik, markerOptions).addTo(myMap)
+L.marker(uni, markerOptions).addTo(markerGroup);  //Marker mit folgendern Koordinaten hinzugefügt 
+L.marker(usi, markerOptions).addTo(markerGroup);
+L.marker(technik, markerOptions).addTo(markerGroup);
 
-myMap.setView(uni,14);
+myMap.fitBounds(markerGroup.getBounds());
+
+
+//myMap.setView(uni,14);
