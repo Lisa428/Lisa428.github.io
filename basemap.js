@@ -46,7 +46,7 @@ let myLayers = {
 
 
 
-myMap.addLayer(myLayers.bmapgrau); //http://leafletjs.com/reference-0.7.7.html#map-addlayer
+myMap.addLayer(myLayers.osm); //http://leafletjs.com/reference-0.7.7.html#map-addlayer
 myMap.setView([47.267,11.383],11);//http://leafletjs.com/reference-0.7.7.html#map-setview
 
 let myMapControl = L.control.layers({   //http://leafletjs.com/reference-0.7.7.html#control-layers
