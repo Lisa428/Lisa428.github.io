@@ -70,3 +70,4 @@ L.control.scale( { //http://leafletjs.com/reference-0.7.7.html#control-scale
     imperial : false} //http://leafletjs.com/reference-0.7.7.html#control-scale-imperial
 ).addTo(myMap);
 
+L.marker([47.267,11.383],11).addTo(myMap)  //Marker mit folgendern Koordinaten hinzugefügt 
