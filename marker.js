@@ -75,6 +75,10 @@ L.control.scale( { //http://leafletjs.com/reference-0.7.7.html#control-scale
 const uni=[47.264,11.385];
 const usi=[47.257, 11.356];
 const technik=[47.263, 11.343];
+const igls=[47.2308, 11.4106];
+const patscherkofel=[47.2087, 11.4607];
+const seegrube=[47.3032022,11.3811517];
+
 myMap.addLayer(markerGroup);
 
 const markerOptions={
@@ -85,8 +89,19 @@ const markerOptions={
 L.marker(uni, markerOptions).addTo(markerGroup);  //Marker mit folgendern Koordinaten hinzugefügt 
 L.marker(usi, markerOptions).addTo(markerGroup);
 L.marker(technik, markerOptions).addTo(markerGroup);
+L.marker(igls, markerOptions).addTo(markerGroup);
+L.marker(patscherkofel, markerOptions).addTo(markerGroup);  
+let patscherkofelMarker=L.marker(patscherkofel).addTo(markerGroup);//definiert neue variable um bild als popup zum marker hinzuzufügen
+patscherkofelMarker.bindPopup("<p>Patscherkofel</p><img style='width:200px' src='patscherkofel.jpg' alt='Patscherkofel'/>"); //fügt bild als popup zum Marker
+L.marker(seegrube, markerOptions).addTo(markerGroup).bindPopup("<p>Patscherkofel</p><img style='width:200px' src='patscherkofel.jpg' alt='Patscherkofel'/>"); 
+myMap.fitBounds(markerGroup.getBounds()); //regelt zoomstufe des layer
 
-myMap.fitBounds(markerGroup.getBounds());
+let lift= L.polyline([igls,patscherkofel], {color: 'red'}); //fügt linie zwischen igls und Patscherkofel
+myMap.addLayer(lift);
+//L.polyline([igls,patscherkofel], {color: 'red'}).addTo(myMap); //ist das gleiche
 
+let uniPolygon=L.polygon([uni,usi,technik]);
+myMap.addLayer(uniPolygon);
+uniPolygon.bindPopup('Ende!');
 
 //myMap.setView(uni,14);
