@@ -46,7 +46,7 @@ let myLayers = {
 
 
 
-myMap.addLayer(myLayers.osm); //http://leafletjs.com/reference-0.7.7.html#map-addlayer
+myMap.addLayer(myLayers.geolandbasemap); //http://leafletjs.com/reference-0.7.7.html#map-addlayer
 myMap.setView([47.267,11.383],11);//http://leafletjs.com/reference-0.7.7.html#map-setview
 
 let myMapControl = L.control.layers({   //http://leafletjs.com/reference-0.7.7.html#control-layers
@@ -70,4 +70,16 @@ L.control.scale( { //http://leafletjs.com/reference-0.7.7.html#control-scale
     imperial : false} //http://leafletjs.com/reference-0.7.7.html#control-scale-imperial
 ).addTo(myMap);
 
-L.marker([47.267,11.383],11).addTo(myMap)  //Marker mit folgendern Koordinaten hinzugefügt 
+const uni=[47.264,11.385];
+const usi=[47.257, 11.356];
+const technik=[47.263, 11.343];
+const markerOptions={
+    title: 'Uni Innsbruck',
+    opacity: 0.4,
+    draggable: true
+}
+L.marker(uni, markerOptions).addTo(myMap);  //Marker mit folgendern Koordinaten hinzugefügt 
+L.marker(usi, markerOptions).addTo(myMap)
+L.marker(technik, markerOptions).addTo(myMap)
+
+myMap.setView(uni,14);
