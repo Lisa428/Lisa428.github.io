@@ -5,7 +5,10 @@ let myMap = L.map('mapdiv'); //http://leafletjs.com/reference-1.3.0.html#map-l-m
 let myLayers = {
     
     osm : L.tileLayer( //http://leafletjs.com/reference-0.7.7.html#tilelayer
-        'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' //http://leafletjs.com/reference-0.7.7.html#tilelayer-l.tilelayer
+        'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {//http://leafletjs.com/reference-0.7.7.html#tilelayer-l.tilelayer
+            subdomains: ['a', 'b', 'c'],
+            attribution: "Datenquelle: <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a>"
+    }
     ),
     geolandbasemap :  L.tileLayer(
         'https://{s}.wien.gv.at/basemap/geolandbasemap/normal/google3857/{z}/{y}/{x}.png', {
