@@ -69,4 +69,3 @@ L.control.scale( { //http://leafletjs.com/reference-0.7.7.html#control-scale
     maxWidth:200, //http://leafletjs.com/reference-0.7.7.html#control-scale-maxwidth
     imperial : false} //http://leafletjs.com/reference-0.7.7.html#control-scale-imperial
 ).addTo(myMap);
-
