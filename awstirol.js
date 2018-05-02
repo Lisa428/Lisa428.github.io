@@ -127,3 +127,7 @@ let ErfurterhütteMarker=L.marker(Erfurterhütte).addTo(myStations);
 ErfurterhütteMarker.bindPopup("<p>Erfurterhütte, 2.4°C am 2018-04-26</p><img style='width:200px' src='https://lawine.tirol.gv.at/data/grafiken/540/standard/dreitage/erfurterhuette.png' alt='Patscherkofel'/>");
 
 myMap.fitBounds(markerGroup.getBounds());
+
+
+
+//möglich über for schleife:
