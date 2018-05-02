@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 let myMap = L.map('mapdiv');  //erstellt neue Variable myLayer, aus Leafleat Bibliothek Layer; z=zoomlevel 
 let myStations = L.featureGroup();
 let myLayers = {
