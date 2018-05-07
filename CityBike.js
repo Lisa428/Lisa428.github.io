@@ -92,16 +92,16 @@ async function addGeojson(url) {
     console.log('Url wird geladen: ', url);
     const response = await fetch(url);
     console.log('Response: ', response);
-    const citybikedata = await response.json();
-    console.log('Geojson: ', citybikedata);
-    const geojson= L.geoJSON(citybikedata, {
+    const cityBikedata = await response.json();
+    console.log('Geojson: ', cityBikedata);
+    const geojson= L.geoJSON(cityBikedata, {
         style: function(feature){   //Ändert Farbe der Linie zwischen den Spots
             return{color:"#ff0000"};
         },
         pointToLayer: function(geoJsonPoint, latlng){  //ändert das Icon auf footprint_green
             return L.marker(latlng, {
                 icon: L.icon({
-                    iconUrl: 'footprint_green.png'
+                    iconUrl: 'cycling.png'
                 })
             });
         }
@@ -111,8 +111,8 @@ async function addGeojson(url) {
 
     geojson.bindPopup(function(layer) {  //Layer definiert
         const props = layer.feature.properties; //greift hierarchisch auf unterordner zu
-        const popupText= `<h1>${props.NAME}</h1> 
-        <p>Kategorie: ${props.KATEGORIE} <br> Bemerkung: ${props.BEMERKUNG} </p>`;  //zwischen ${} ist Variable, sonst Text
+        const popupText= `<h1>${props.STATION}</h1> 
+        <p>${props.BEZIRK}. Bezirk </p>`;  //zwischen ${} ist Variable, sonst Text
         return popupText;
     });
 
@@ -120,8 +120,7 @@ async function addGeojson(url) {
 
 }
 
-const url= 'https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&srsName=EPSG:4326&outputFormat=json&typeName=ogdwien:SPAZIERPUNKTOGD,ogdwien:SPAZIERLINIEOGD'  //Link der als constante definieren
-
+const url= 'https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:CITYBIKEOGD&srsName=EPSG:4326&outputFormat=json'
 addGeojson(url);
 
 myMap.addLayer(wienGroup);
