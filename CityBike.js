@@ -121,7 +121,7 @@ async function addGeojson(url) {
     
     const hash = new L.Hash(myMap); //bindet leaflet.hash Popup in html ein (zeigt koordinaten in htmladresse an)
     
-    myMap.addControl( new L.Control.Search({
+    myMap.addControl( new L.Control.Search({  //suchleiste in map eingefügt
         layer: wienGroup,
         propertyName: 'STATION'
         
