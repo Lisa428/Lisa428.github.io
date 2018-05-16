@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bike Trail Tirol - Etappe 10: Kufstein - Kössen</title><!-- TODO: Etappentitel einfügen -->
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../js/leaflet/leaflet.css" />
+    <script src="../js/leaflet/leaflet.js"></script>
+
+    <link rel="stylesheet" href="styles.css" />
+    <script src= 'data/etappe10.geojson.js'></script>
+    <script defer src="biketirol.js"></script>
+
+</head>
+
+<body>
+    <div id="header">
+        <h2 class="white">Bike Trail Tirol</h2>
+        <h3 class="white">Griass enk die Wadeln!</h3>
+    </div>
+
+    <div class="author">
+        <img src="images/userin.jpg" alt="Ihre Reiseleiterin" /><!-- TODO: anpassen -->
+        <p class="gray">
+            <a href="mailto:Lisa-maria.helminger@uibk.ac.at">Lisa Helminger</a> -<!-- TODO: anpassen -->
+            <a href="https://Lisa428.github.io/biketirol/index.html">https://Lisa428.github.io/biketirol/</a><!-- TODO: anpassen -->
+        </p>
+    </div>
+
+    <hr />
+
+    
+    <div class="article">
+        <h1>Etappe 10 von Kufstein nach Kössen</h1><!-- TODO: anpassen -->
+
+        <p>Die mittelschwierige Etappe verläuft auf gut ausgebauten Radwanderwegen und Forststraßen und ist geprägt von saftigen Wiesen und grünen Wäldern, die in die imposante Kulisse des Kaisergebirges eingebettet sind. Nach dem Ort Durchholzen erfolgt ein Anstieg mit 350 Höhenmeter bis zur Gwirchtalm – ist diese Steigung überwunden, führt der Weg abwärts über das Habersautal zum Walchsee – ein Bad bietet hier angenehme Abkühlung und sorgt für eine erfrischende Weiterfahrt bis nach Kössen.</p>
+
+        <div id="map"></div>
+
+        <h2>Streckenbeschreibung</h2>
+        <p>Zunächst folgt man 2 Kilometer dem Radweg flussabwärts direkt am Inn, ehe man rechts nach Oberndorf - Ebbs abzweigt. Das kleine Dorf wird durchquert und in weiterer Folge orientiert man sich immer an den grünen Radwegweisern mit dem Bike Trail Tirol Logo. Durch Wiesen und Wälder geht es nun vorbei an Ebbs Richtung Walchsee. Kurz vor dem Weiler Durchholzen erreicht man die Bundesstraße und radelt auf dieser 1,5 km durch den kleinen Ort (1,5 h ab dem Etappenstart) bis man wieder auf den Radweg (Nr.15) Richtung Walchsee abzweigt. Kurz vor dem Walchsee im Weiler Oed zweigt man vom Radweg rechts Richtung Habersautal (323) ab. Nun folgt ein Anstieg über 350 Höhenmeter zur Gwirchtalm, auf der anderen Seite hinab ins Habersautal und weiter zur Hauptstraße in Walchsee (1,5 h ab Durchholzen). Auf dieser geht es etwa einen Kilometer in östlicher Richtung bis man links auf den Radweg nach Kössen abzweigt (15). Von nun an folgt man immer den Radwegweisern nach Kössen bis ins Zentrum (1 h ab Walchsee).</p>
+
+        <h3>Links</h3>
+        <ul>
+            <li>Mehr zur Tour: <a href="https://www.tirol.at/reisefuehrer/sport/radfahren/biketouren/a-bike-trail-tirol-kufstein-koessen">Bike Trail Tirol</a></li>
+            <li>Start: <a href="https://www.kufstein.com/">Kufstein</a></li>
+            <li>Auf dem Weg: <a href="https://www.tirol.at/orte/a-walchsee">Walchsee</a>, <a href="https://www.schnapflhof.com/Gwirchtalm_Walchsee">Gwirchtalm</a></li>
+            <li>Ziel: <a href="https://www.kaiserwinkl.com/">Kössen im Kaiserwinkl</a></li>
+            <li>Zurück zum Ausgangspunkt: <a href="https://www.kaiserwinkl.com/media/Busfahrplan-4030-kufstein-Walchsee-Koessen-2016.pdf">Busverbindung Kössen-Kufstein</a></li>
+            <li>Lohnenswerter Abstecher: <a href="https://www.reitimwinkl.de/"><b>Reit im Winkl</b></a></li>
+        </ul>
+    </div>
+
+    <hr />
+
+    <!-- TODO: Links anpassen zu den benachbarten Etappen - siehe OLAT Tabelle ... -->
+    <div id="footer" class="gray">
+        <a class="back" href="../09/index.html">
+            <i class="fas fa-arrow-alt-circle-left"></i> vorhergehender Stop</a>
+        <a class="next" href="../11/index.html">nächster Stop
+            <i class="fas fa-arrow-alt-circle-right"></i>
+        </a>
+    </div>
+
+</body>
+</html>

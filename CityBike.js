@@ -23,7 +23,7 @@ bmapoverlay : L.tileLayer(
     attribution : "Datenquelle: <a href='https://www.basemap.at'>basemap.at</a>" 
 }
 ),
-bmapgrau : L.tileLayer(
+/*bmapgrau : L.tileLayer(
     "https://{s}.wien.gv.at/basemap/bmapgrau/normal/google3857/{z}/{y}/{x}.png", {
     subdomains : ["maps","maps1","maps2","maps3","maps4"], 
     attribution : "Datenquelle: <a href='https://www.basemap.at'>basemap.at</a>" 
@@ -40,19 +40,19 @@ bmaporthofoto30cm: L.tileLayer(
     subdomains : ["maps","maps1","maps2","maps3","maps4"], 
     attribution : "Datenquelle: <a href='https://www.basemap.at'>basemap.at</a>" 
 }
-),
+),*/
 
 };
 
-myMap.addLayer(myLayers.bmapgrau); //http://leafletjs.com/reference-0.7.7.html#map-addlayer
+myMap.addLayer(myLayers.geolandbasemap); //http://leafletjs.com/reference-0.7.7.html#map-addlayer
 myMap.setView([47.267,11.383],11);//http://leafletjs.com/reference-0.7.7.html#map-setview
 
 let myMapControl = L.control.layers({   //http://leafletjs.com/reference-0.7.7.html#control-layers
     "Openstreetmap" : myLayers.osm,
     "basemap.at Grundkarte" : myLayers.geolandbasemap,
-    "basemap.at grau" : myLayers.bmapgrau,
+    /*"basemap.at grau" : myLayers.bmapgrau,
     "basemap.at highdpi" : myLayers.bmaphidpi,
-    "basemap.at Orthofoto" : myLayers.bmaporthofoto30cm,
+    "basemap.at Orthofoto" : myLayers.bmaporthofoto30cm,*/
 },{
     "basemap.at Overlay" : myLayers.bmapoverlay,
     'Spots: ': wienGroup,   //feature Group dem Overlay-Layer hinzufügen
