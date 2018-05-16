@@ -12,8 +12,13 @@
     <script src="../js/leaflet/leaflet.js"></script>
 
     <link rel="stylesheet" href="styles.css" />
-    <script src= 'data/etappe10.geojson.js'></script>
+    <!--<script src= 'data/etappe10.geojson.js'></script>    braucht man nicht mehr wegen gpx--> 
     <script defer src="biketirol.js"></script>
+
+    <link rel="stylesheet" href="../js/Leaflet.fullscreen/leaflet.fullscreen.css" /> <!-- Fullscreen Plugin einbauen-->
+    <script src= "../js/Leaflet.fullscreen/Leaflet.fullscreen.min.js"></script>
+
+    <script src= "../js/leaflet.gpx/gpx.js"></script> <!-- gpx Plugin einbauen-->
 
 </head>
 
@@ -39,6 +44,7 @@
 
         <p>Die mittelschwierige Etappe verläuft auf gut ausgebauten Radwanderwegen und Forststraßen und ist geprägt von saftigen Wiesen und grünen Wäldern, die in die imposante Kulisse des Kaisergebirges eingebettet sind. Nach dem Ort Durchholzen erfolgt ein Anstieg mit 350 Höhenmeter bis zur Gwirchtalm – ist diese Steigung überwunden, führt der Weg abwärts über das Habersautal zum Walchsee – ein Bad bietet hier angenehme Abkühlung und sorgt für eine erfrischende Weiterfahrt bis nach Kössen.</p>
 
+        <p>Tourdaten: Gesamtlänge <span id='gesamtlaenge'></span> m</p>
         <div id="map"></div>
 
         <h2>Streckenbeschreibung</h2>

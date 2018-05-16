@@ -27,8 +27,11 @@
 
 // Overlay controls zum unabhängigem Ein-/Ausschalten der Route und Marker hinzufügen
 
-let myMap = L.map("map");
-const bikeGroup = L.featureGroup().addTo(myMap);
+let myMap = L.map("map", {
+    fullscreenControl: true //fullscreen der Karte
+});
+
+let bikeGroup = L.featureGroup().addTo(myMap);
 
 //Grundkarten laden
 let myLayers={
@@ -134,7 +137,7 @@ const FinishMarker = {
 L.marker(Coord.start, StartMarker).bindPopup("<p><b>Start: Kufstein</b></p><a href='https://de.wikipedia.org/wiki/Kufstein'>mehr über Kufstein</a>").addTo(bikeGroup);
 L.marker(Coord.finish, FinishMarker).bindPopup("<p><b>Ziel: Kössen</b></p><a href='https://de.wikipedia.org/wiki/K%C3%B6ssen'>mehr über Kössen</a>").addTo(bikeGroup);
 
-//geojson
+/*geojson  (brauchen wir nicht mehr wegen gpx)
 
 const geojson = L.geoJSON(etappe10data).addTo(bikeGroup);
 
@@ -147,4 +150,21 @@ geojson.bindPopup(function(layer){
 
 
 //Zoomstufe
-myMap.fitBounds(bikeGroup.getBounds());
+myMap.fitBounds(bikeGroup.getBounds());*/
+
+//gpx Track statt geojson
+
+let gpxTrack = new L.GPX("data/etappe10.gpx", {
+    async: true,
+    }).addTo(myMap);
+    gpxTrack.on("loaded", function(evt){
+        myMap.fitBounds(evt.target.getBounds());
+        console.log('Länge des Trails: ',evt.target.get_distance().toFixed(0)) //Länge des Tracks ausgeben lassen
+        console.log('Niedrigster Punkt: ',evt.target.get_elevation_min().toFixed(0)) 
+        console.log('Höchster Punkt: ', evt.target.get_elevation_max().toFixed(0)) 
+        console.log('Aufstieg: ',evt.target.get_elevation_gain().toFixed(0)) 
+        console.log('Abstieg: ',evt.target.get_elevation_loss().toFixed(0)) 
+
+        let gesamtlaenge=evt.target.get_distance().toFixed(0);
+        document.getElementById('gesamtlaenge').innerHTML=gesamtlaenge;
+    });
