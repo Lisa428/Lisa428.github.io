@@ -167,4 +167,16 @@ let gpxTrack = new L.GPX("data/etappe10.gpx", {
 
         let gesamtlaenge=evt.target.get_distance().toFixed(0);
         document.getElementById('gesamtlaenge').innerHTML=gesamtlaenge;
+
+        let lowpoint=evt.target.get_elevation_min().toFixed(0);
+        document.getElementById('lowpoint').innerHTML=lowpoint;
+
+        let highpoint=evt.target.get_elevation_max().toFixed(0);
+        document.getElementById('highpoint').innerHTML=highpoint;
+
+        let aufstieg=evt.target.get_elevation_gain().toFixed(0);
+        document.getElementById('aufstieg').innerHTML=aufstieg;
+
+        let abstieg=evt.target.get_elevation_loss().toFixed(0);
+        document.getElementById('abstieg').innerHTML=abstieg;
     });
