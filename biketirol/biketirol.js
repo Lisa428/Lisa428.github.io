@@ -32,6 +32,8 @@ let myMap = L.map("map", {
 });
 
 let bikeGroup = L.featureGroup().addTo(myMap);
+let overlayMarker= L.featureGroup().addTo(myMap);
+let overlaySteigung= L.featureGroup().addTo(myMap);
 
 //Grundkarten laden
 let myLayers={
@@ -93,8 +95,8 @@ let myMapControl = L.control.layers({   //http://leafletjs.com/reference-0.7.7.h
 
 }, {
         "basemap.at Overlay": myLayers.bmapoverlay,
-        "Etappe 10: ": bikeGroup,   //feature Group dem Overlay-Layer hinzufügen
-        //'Group: ': marker,
+        "Etappe 10 ": bikeGroup,   //feature Group dem Overlay-Layer hinzufügen
+        'Steigungslinie ': overlaySteigung,
     }, {
         collapsed: true //http://leafletjs.com/reference-0.7.7.html#control-layers-collapsed
 
@@ -152,11 +154,31 @@ geojson.bindPopup(function(layer){
 //Zoomstufe
 myMap.fitBounds(bikeGroup.getBounds());*/
 
+
+// Höhenprofil control hinzufügen
+
+ let hoehenprofil = L.control.elevation({
+    position: "topright",
+  theme: "steelblue-theme", //default: lime-theme
+  width: 600,
+  height: 125,
+  margins: {
+      top: 10,
+      right: 20,
+      bottom: 30,
+      left: 50
+  },
+    collapsed: true,
+
+}).addTo(myMap);
+ 
+
+
 //gpx Track statt geojson
 
 let gpxTrack = new L.GPX("data/etappe10.gpx", {
     async: true,
-    }).addTo(myMap);
+    })//.addTo(myMap);
     gpxTrack.on("loaded", function(evt){
         myMap.fitBounds(evt.target.getBounds());
         console.log('Länge des Trails: ',evt.target.get_distance().toFixed(0)) //Länge des Tracks ausgeben lassen
@@ -180,3 +202,57 @@ let gpxTrack = new L.GPX("data/etappe10.gpx", {
         let abstieg=evt.target.get_elevation_loss().toFixed(0);
         document.getElementById('abstieg').innerHTML=abstieg;
     });
+
+gpxTrack.on('addline', function(evt) {  //Höhenprofil entlang des gpsTracks
+    hoehenprofil.addData(evt.line);
+    //console.log(evt.line.getLatLngs()[0].meta.ele) //pfad um auf Höhen der gpx Punkte zuzugreifen
+    
+    //Segmente der Steigungslinie hinzufügen
+
+    let gpxTrack = evt.line.getLatLngs();
+    for (i=1; i<gpxTrack.length; i++){
+        let p1=gpxTrack[i-1];
+        let p2=gpxTrack[i]; 
+        
+        //Entfernung zwischen den Punkten berechnen
+        let dist=myMap.distance(
+            [p1.lat,p1.lng],
+            [p2.lat,p2.lng]
+        );
+
+        let delta=p2.meta.ele-p1.meta.ele; //Steigung zwischen den Punkten
+        
+        //Steigung in Prozent berechnen
+        let proz=0
+        if (dist>0) {
+        let proz= (delta/dist *100.0).toFixed(1);  
+        }
+
+        //oder
+        let proz2=(dist>0)?(delta/dist*100.0).toFixed(1):0;
+
+        let farbe=
+            proz2 > 10 ? '#cb181d':
+            proz2 > 6 ? '#fb6a4a':
+            proz2 > 2 ? '#fcae91':
+            proz2 > 0 ? '#fdbe85':
+            proz2 > -2 ? '#d9f0a3':
+            proz2 > -6 ? '#c2e699':
+            proz2 > -10 ? '#78c679':
+                        '#238443'
+       
+
+                        
+
+        let segment = L.polyline(
+           [ [p1.lat,p1.lng],
+            [p2.lat,p2.lng]],
+            {
+                color: farbe
+            }).addTo(overlaySteigung)
+
+    }
+});
+   
+
+
